@@ -3,9 +3,11 @@ from events import *
 from menu import *
 
 def loop(game: MyGame) -> None:
+    events = MyEvents()
+
     while game.running:
-        game.startEventCheck()
-        if game.events["quit"]:
+        events.startEventCheck()
+        if events.events["quit"]:
             game.exitGame()
 
         game = menu(game)
