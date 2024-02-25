@@ -7,9 +7,13 @@ from utils import *
 
 def player_movement(game: MyGame) -> MyGame:
     if pygame.key.get_pressed()[pygame.K_LEFT]:
-        game.player.moveLeft(game.dt)
+        game.player.leftPressed(game.dt)
+    else:
+        game.player.leftReleased(game.dt)
     if pygame.key.get_pressed()[pygame.K_RIGHT]:
-        game.player.moveRight(game.dt)
+        game.player.rightPressed(game.dt)
+    else:
+        game.player.rightReleased(game.dt)
     if pygame.key.get_pressed()[pygame.K_ESCAPE]:
         game.running = False
     return game
@@ -19,11 +23,12 @@ def game_func(game: MyGame) -> MyGame:
     game.player.drawPlayer(game.screen)
     game = player_movement(game)
     game.refreshScreen()
+    print(game.dt)
     return game
 
 def loop(game: MyGame) -> None:
     events = MyEvents()
-    game.player.init_test(scaleResX(50), scaleResY(50), scaleResY(20), PLAYER_COLOR)
+    game.player.init_test(scaleResX(700), scaleResY(720 - 20), scaleResY(20), PLAYER_COLOR)
 
     while game.running:
         events.startEventCheck()

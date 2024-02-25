@@ -2,7 +2,8 @@ import pygame
 
 class MyPlayer:
     def __init__(self) -> None:
-        pass
+        self.left = False
+        self.right = False
     def init(self, x_pos: int, y_pos: int, size: int, image: str) -> None:
         self.x_pos = x_pos
         self.y_pos = y_pos
@@ -15,12 +16,28 @@ class MyPlayer:
         self.x_pos = x_pos
         self.y_pos = y_pos
 
-    def drawPlayer(self, screen):
+    def drawPlayer(self, screen) -> None:
         pygame.draw.rect(screen,self.color, (self.x_pos, self.y_pos, self.size, self.size))
     
-    def moveLeft(self, dt):
+    def leftPressed(self, dt) -> None:
+        if self.right is not True:
+            self.left = True
+            self.moveLeft(dt)
+
+    def rightPressed(self, dt) -> None:
+        if self.left is not True:
+            self.right = True
+            self.moveRight(dt)
+
+    def leftReleased(self, dt) -> None:
+        self.left = False
+
+    def rightReleased(self, dt) -> None:
+        self.right = False
+
+    def moveLeft(self, dt) -> None:
         self.x_pos += int(-2)
     
-    def moveRight(self, dt):
+    def moveRight(self, dt) -> None:
         self.x_pos += int(2)
 
