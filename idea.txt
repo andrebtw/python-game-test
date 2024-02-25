@@ -1,0 +1,1 @@
+player that, can go up only with jumps, and he catchs jumps in the air

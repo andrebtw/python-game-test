@@ -1,0 +1,13 @@
+# Game config
+SCREEN_WIDTH = 1920
+SCREEN_HEIGHT = 1080
+IS_FULLSCREEN = False
+FPS = 60
+
+# Colors
+WHITE = (255, 255, 255)
+BLUE = (0, 0, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+PLAYER_COLOR = (250, 35, 32)
+

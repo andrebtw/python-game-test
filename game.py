@@ -1,4 +1,5 @@
 import pygame
+from player import *
 
 class MyGame:
     def __init__(self, width: int, height: int, isFullscreen: bool, fps: int) -> None:
@@ -11,6 +12,7 @@ class MyGame:
         self.clock = pygame.time.Clock()
         self.running = True
         self.fps = fps
+        self.player = MyPlayer()
         print("Game started.")
 
     def setNewRes(self, width: int, height: int, isFullscreen: bool, isResizable: bool, vsync_nb: int):
@@ -32,5 +34,9 @@ class MyGame:
     def dtLoop(self) -> None:
         self.dt = self.clock.tick(self.fps) / 1000
 
-    def keyCheck(self) -> None:
-        pass
+    def getKeys(self) -> list:
+        return (pygame.key.get_pressed())
+    
+    def setWallpaperColor(self, color: tuple) -> None:
+        self.screen.fill(color)
+
