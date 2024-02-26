@@ -6,16 +6,31 @@ from player import *
 from utils import *
 
 def player_movement(game: MyGame) -> MyGame:
-    if pygame.key.get_pressed()[pygame.K_LEFT]:
+    # Controls
+
+    # Left
+    if pygame.key.get_pressed()[pygame.K_a]:
         game.player.leftPressed(game.dt)
     else:
         game.player.leftReleased(game.dt)
-    if pygame.key.get_pressed()[pygame.K_RIGHT]:
+
+    # Right
+    if pygame.key.get_pressed()[pygame.K_d]:
         game.player.rightPressed(game.dt)
     else:
         game.player.rightReleased(game.dt)
+
+    # Jump
+    if pygame.key.get_pressed()[pygame.K_w]:
+        game.player.upPressed(game.dt)
+    else:
+        game.player.upReleased(game.dt)
+
     if pygame.key.get_pressed()[pygame.K_ESCAPE]:
         game.running = False
+    
+    # Gravity
+    game.player.playerFall(game.dt)
     return game
 
 def game_func(game: MyGame) -> MyGame:
@@ -23,7 +38,7 @@ def game_func(game: MyGame) -> MyGame:
     game.player.drawPlayer(game.screen)
     game = player_movement(game)
     game.refreshScreen()
-    print(game.dt)
+    # print(game.dt)
     return game
 
 def loop(game: MyGame) -> None:
@@ -36,6 +51,7 @@ def loop(game: MyGame) -> None:
             game.exitGame()
 
         game = game_func(game)
+        # print(game.clock.get_fps())
         # game = menu(game)
         game.dtLoop()
 
